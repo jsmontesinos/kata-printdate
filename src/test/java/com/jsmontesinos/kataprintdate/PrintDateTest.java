@@ -2,7 +2,6 @@ package com.jsmontesinos.kataprintdate;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,15 +13,16 @@ public class PrintDateTest {
 	
 	@Test
 	public void should_print_today_date() throws FileNotFoundException, ParseException{
-		PrintStreamDouble ps = new PrintStreamDouble(new ByteArrayOutputStream());
+		PrinterDouble printer = new PrinterDouble();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		String strDate = "11/10/2010";
-		PrintDate printer = new PrintDate(ps, df.parse(strDate));
+		DaterDouble dater = new DaterDouble(df.parse(strDate));
+		PrintDate printDate = new PrintDate(printer, dater);
 		
 		// Act
-		printer.printCurrentDate();
+		printDate.printCurrentDate();
 		
 		// Assert
-		assertEquals(ps.getPrintedResult(), strDate);
+		assertEquals(printer.getPrintedResult(), strDate);
 	}
 }
