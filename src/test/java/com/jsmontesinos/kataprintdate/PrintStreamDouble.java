@@ -1,6 +1,6 @@
 package com.jsmontesinos.kataprintdate;
 
-import java.io.FileNotFoundException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,10 +8,10 @@ import java.text.SimpleDateFormat;
 public class PrintStreamDouble extends PrintStream {
 
 	String printedResult;
-
-	public PrintStreamDouble(String arg0) throws FileNotFoundException {
-		super(arg0);
-		this.printedResult = arg0;
+	
+	public PrintStreamDouble(OutputStream out) {
+		super(out);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
