@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Print Date Kata
+
+---
+
+## Starting Code
+
+### Java
+
+```java
+public void printCurrentDate() {
+    System.out.println(new Date());
+}
+```
+
+### PHP
+
+```php
+public function printCurrentDate()
+{
+echo date("Y-m-d H:i:s");
+}
+```
+
+---
+
+## Mocks & Stubs
+
+According to **Martin Fowler's** article:
+
+* **Dummy** objects are passed around but never actually used. Usually they are just used to fill parameter lists.
+* **Fake** objects actually have working implementations, but usually take some shortcut which makes them not suitable for production (an in memory database is a good example).
+* **Stubs** provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test. Stubs may also record information about calls, such as an email gateway stub that remembers the messages it 'sent', or maybe only how many messages it 'sent'.
+* **Mocks** are what we are talking about here: objects pre-programmed with **expectations** which form a specification of the calls they are expected to receive.
+
+---
+
+## Mock example
+
+```java
+@Test
+public void should_interact_with_the_mock() {
+    Collaborator collaborator = mock(Collaborator.class);       
+    MyClass myClass = new MyClass(collaborator);
+
+    myClass.run();
+
+    verify(collaborator).collaborate();
+}
+```
+
+---
+
+## Stub example  
+
+```java
+@Test
+public void should_retrieve_the_stub_response(){
+    Collaborator collaborator = mock(Collaborator.class);       
+    String collaboratorResponse = "collaborator response";
+    when(collaborator.collaborate()).thenReturn(collaboratorResponse);
+    MyClass myClass = new MyClass(collaborator);
+
+    String result = myClass.run();
+
+    assertEquals(result, collaboratorResponse);
+}
+```
+
+</textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
