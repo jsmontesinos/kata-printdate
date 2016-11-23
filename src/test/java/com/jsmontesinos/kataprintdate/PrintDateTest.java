@@ -1,5 +1,7 @@
 package com.jsmontesinos.kataprintdate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -23,12 +25,19 @@ public class PrintDateTest {
 		
 		printDate.printCurrentDate();
 	
-		verify(printer).printDate(any(Date.class));;
+		verify(printer).printDate(any(Date.class));
 	}
 	
 	@Test
-	public void should_verify_print_expected_date(){
+	public void should_verify_print_expected_date() throws ParseException{
 		Printer printer = mock(Printer.class);
 		Dater dater = mock(Dater.class);
+		Date fixDate = (new SimpleDateFormat("dd/MM/yyyy")).parse("01/01/2011");
+		when(dater.getCurrentDate()).thenReturn(fixDate);
+		PrintDate printDate = new PrintDate(printer, dater);
+		
+		printDate.printCurrentDate();
+		
+		verify(printer).printDate(fixDate);
 	}
 }
