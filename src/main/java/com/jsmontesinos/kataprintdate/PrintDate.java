@@ -4,12 +4,15 @@ import java.util.Date;
 
 public class PrintDate {
 	
-	public void printCurrentDate() { 
-		printDate(getCurrentDate()); 
+	Printer printer;
+	
+	public PrintDate(Printer printer) {
+		super();
+		this.printer = printer;
 	}
 
-	private void printDate(Date date) {
-		System.out.println(date);
+	public void printCurrentDate() { 
+		printer.printDate(getCurrentDate()); 
 	}
 
 	private Date getCurrentDate() {

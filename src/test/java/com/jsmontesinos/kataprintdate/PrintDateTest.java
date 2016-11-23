@@ -6,7 +6,7 @@ public class PrintDateTest {
 	
 	@Test
 	public void should_print_current_date(){
-		PrintDate printDate = new PrintDate();
+		PrintDate printDate = new PrintDate(new Printer());
 		
 		printDate.printCurrentDate();
 		
