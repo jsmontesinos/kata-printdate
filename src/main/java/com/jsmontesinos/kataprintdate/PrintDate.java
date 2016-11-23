@@ -1,22 +1,18 @@
 package com.jsmontesinos.kataprintdate;
 
-import java.util.Date;
-
 public class PrintDate {
 	
 	Printer printer;
+	Dater dater;
 	
-	public PrintDate(Printer printer) {
+	public PrintDate(Printer printer, Dater dater) {
 		super();
 		this.printer = printer;
+		this.dater = dater;
 	}
 
 	public void printCurrentDate() { 
-		printer.printDate(getCurrentDate()); 
-	}
-
-	private Date getCurrentDate() {
-		return new Date();
+		printer.printDate(dater.getCurrentDate()); 
 	}
 
 }
